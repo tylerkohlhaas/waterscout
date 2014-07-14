@@ -1,1 +1,81 @@
-"test 1" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>West Coast Water Conditions</title>
+	<meta name="description" content="Check the water conditions on the west coast!">
+	<meta name="keywords" content="west, coast, westcoast, water, conditions">
+
+	<style type="text/css">
+		html { height: 100% }
+		body { height: 100%; margin: 0px; padding: 0px }
+		#map { 
+			height: 100%; 
+			position: fixed; 
+			top: 0; 
+			bottom: 0; 
+			left: 0; 
+			right: 0; 
+			z-index: 0;
+		}
+		#web_face {
+			height: 0px; 
+			width: 1000px; 
+			background-color: transparent; 
+			position:absolute; 
+			left: 50%; 
+			margin-left: -480px; 
+			z-index:1;
+		}
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key="AIzaSyAhMxFzCptFhClYX9Z0oXczVeCEbetWF5Y"">
+    </script>
+    <script type="text/javascript">
+		function initialize() {
+
+			var locations = [
+				['Passage Island', 49.343085, -123.305938, 'www.google.com'],
+				['Point Atkinson', 49.329925, -123.264994, 'www.facebook.com']
+			];
+
+			var mapOptions = {
+				center: new google.maps.LatLng(49.343085, -123.305938),
+				zoom: 13,
+				mapTypeControl: false,
+				panControl: false,
+				streetViewControl: false,
+				zoomControl: false,
+				disableDoubleClickZoom: true,
+			};
+			var map = new google.maps.Map(document.getElementById('map'),
+				mapOptions);
+
+			var markers = [], i;
+
+			for(i=0; i < locations.length; i++){
+				markers.push(new google.maps.Marker({
+					position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
+					map: map,
+					url: locations[i][3]  //not sure why this isn't linking to anything
+				}));	
+			}
+			google.maps.event.addListener(markers, 'click', function(){
+				window.location.href = markers.url; 
+			});
+		}
+			google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+</head>
+<body>
+<div id="web_face">
+	 <center>
+		<h1> West Coast Water Conditions </h1>
+			<form>
+				<input type="search", placeholder="Search for an area", name="Search", target="_self", size=50>
+			</form>
+	</center> 
+</div>
+<div id="map"/>
+</body>
+</html> 
