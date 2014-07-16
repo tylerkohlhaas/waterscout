@@ -35,7 +35,7 @@
 
 			var locations = [
 				['Passage Island', 49.343085, -123.305938, 'tylerkohlhaas.github.io/waterscout/passage.html'],
-				['Point Atkinson', 49.329925, -123.264994, 'www.facebook.com']
+				['Point Atkinson', 49.329925, -123.264994, 'tylerkohlhaas.github.io/waterscout/patkinson.html']
 			];
 
 			var mapOptions = {
@@ -53,14 +53,16 @@
 			var markers = [], i;
 			var markersRef = markers;
 
-			for(i=0; i < locations.length; i++){
+			for(i=0; i < locations.length; i++)
+			{
 				markersRef.push(new google.maps.Marker({
 					position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
 					map: map,
 					url: locations[i][3]  //not sure why this isn't linking to anything
-				}));	
+				}));
+				
 				google.maps.event.addListener(markers, 'click', function(){
-				window.location.href = markers.url; 
+					window.location.href = markersRef.url; 
 				});
 			}
 
