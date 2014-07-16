@@ -50,19 +50,21 @@
 			var map = new google.maps.Map(document.getElementById('map'),
 				mapOptions);
 
-			var markers = [], i;
+			var i;
 
 			for(i=0; i < locations.length; i++)
 			{
-				markers.push(new google.maps.Marker({
+				var markers = new google.maps.Marker({
 					position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
 					map: map,
+					clickable: true,
 					url: locations[i][3],  //not sure why this isn't linking to anything
-					zIndex: 20
-				}));
+					zIndex: 1
+				});
 				
 				google.maps.event.addListener(markers, 'click', function(){
 					window.location.href = markers.url; 
+					console.log("here we are");
 				});
 			}
 
