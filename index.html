@@ -51,25 +51,23 @@
 				mapOptions);
 
 			var i;
-
+			
 			for(i=0; i < locations.length; i++)
 			{
 				var markers = new google.maps.Marker({
 					position: new google.maps.LatLng(locations[i][1], locations[i][2]), 
 					map: map,
 					clickable: true,
-					url: locations[i][3],  
+					url: locations[i][3],
 					zIndex: 1
 				});
 				
 				google.maps.event.addListener(markers, 'click', function(){
-					window.location.href = markers.url; 
-					console.log("here we are");
+					window.location.href = this.url; 
 				});
 			}
-
 		}
-			google.maps.event.addDomListener(window, 'load', initialize);
+		google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
 </head>
